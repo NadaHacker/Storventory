@@ -4,9 +4,51 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Storventory.Views"
+             xmlns:vms="clr-namespace:Storventory.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vms:ScanInItemViewModel/>
+    </UserControl.DataContext>
     <Grid Background="BlanchedAlmond">
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="Aqua">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Vertical">
+                <Label Content="Scan A Barcode"/>
+                <TextBox Height="100"/>
+            </StackPanel>
+            <Button Grid.Row="1" Height="35" Width="100" Content="Process"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <ItemsControl ItemsSource="{Binding ScannedInItems, Mode=OneWay}">
+                <ItemsControl.Template>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <local:ScannedItemView/>
+                    </ControlTemplate>
+                </ItemsControl.Template>
+            </ItemsControl>
+            <!--<WrapPanel>
+                <Button Margin="5">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Rectangle Grid.Row="0" Fill="Black" Height="60" Margin="2,2,2,0"/>
+                            <Label Grid.Row="1" Content="Poweraide Drink" FontSize="9"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </WrapPanel>    -->
+
+        </Grid>
     </Grid>
 </UserControl>
